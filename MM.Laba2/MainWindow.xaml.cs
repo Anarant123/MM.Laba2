@@ -266,18 +266,51 @@ namespace MM.Laba2
 
             U.Add(1, 0);
 
-            foreach (var potential in potentials)
+            // вычисление потенциалов
+            while (U.Count < factories.Count && V.Count < shops.Count) 
             {
-                if (U.ContainsKey(potential.Key / 10) && !V.ContainsKey(potential.Key % 10))
-                    V.Add(potential.Key % 10, U[potential.Key / 10] + costs[potential.Key].Item1);
+                foreach (var potential in potentials)
+                {
+                    int row = potential.Key / 10;
+                    int col = potential.Key % 10;
 
-                if (V.ContainsKey(potential.Key % 10) && !U.ContainsKey(potential.Key / 10))
-                    U.Add(potential.Key / 10, V[potential.Key % 10] - costs[potential.Key].Item1);
+                    if (U.ContainsKey(row) && !V.ContainsKey(col))
+                    {
+                        V.Add(col, costs[potential.Key].Item1 - U[row]);
+                    }
+                    else if (V.ContainsKey(col) && !U.ContainsKey(row))
+                    {
+                        U.Add(row, costs[potential.Key].Item1 - V[col]);
+                    }
+                }
             }
 
-            foreach (var u in U)
+            foreach (var v in V)
             {
+                foreach (var potential in potentials)
+                {
+                    int row = potential.Key / 10;
+                    int col = potential.Key % 10;
 
+                    if(v.Key == col && !U.ContainsKey(row))
+                    {
+                        U.Add(row, costs[potential.Key].Item1 - V[col]);
+                    }
+                }
+            }
+
+            foreach (var u  in U)
+            {
+                foreach (var potential in potentials)
+                {
+                    int row = potential.Key / 10;
+                    int col = potential.Key % 10;
+
+                    if (u.Key == row && !V.ContainsKey(col))
+                    {
+                        V.Add(col, costs[potential.Key].Item1 - U[row]);
+                    }
+                }
             }
 
 
@@ -296,6 +329,70 @@ namespace MM.Laba2
                 if (textBox != null)
                     textBox.Text = u.Value.ToString();
             }
+
+            if (string.IsNullOrEmpty(tbU5.Text))
+                dopColU.Visibility = Visibility.Collapsed;
+
+            if (string.IsNullOrEmpty(tbV4.Text))
+                dopColV.Visibility = Visibility.Collapsed;
+
+            foreach (var cost in costs)
+            {
+                string textBoxName = $"tbCr{cost.Key}";
+
+                TextBox textBox = FindName(textBoxName) as TextBox;
+
+                if (textBox != null)
+                {
+                    textBox.Text = cost.Value.Item1.ToString();
+                }
+            }
+
+
+
+
+            bool toCollaepsedBr = true;
+            for (int i = 51; i <= 54; i++)
+            {
+                string textBoxName = $"tbCr{i}";
+                TextBox textBox = FindName(textBoxName) as TextBox;
+                if (textBox != null)
+                {
+                    if (!string.IsNullOrEmpty(textBox.Text))
+                        toCollaepsedBr = false;
+                }
+            }
+            if (toCollaepsedBr)
+            {
+                for (int i = 51; i <= 54; i++)
+                {
+                    string textBoxName = $"tbCr{i}";
+                    TextBox textBox = FindName(textBoxName) as TextBox;
+                    textBox.Visibility = Visibility.Collapsed;
+                    dopRowCr.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            bool toCollaepsedAr = true;
+            for (int i = 14; i <= 54; i += 10)
+            {
+                string textBoxName = $"tbCr{i}";
+                TextBox textBox = FindName(textBoxName) as TextBox;
+                if (textBox != null)
+                {
+                    if (!string.IsNullOrEmpty(textBox.Text))
+                        toCollaepsedAr = false;
+                }
+            }
+            if (toCollaepsedAr)
+            {
+                for (int i = 51; i <= 54; i++)
+                {
+                    dopColCr.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            lbResult.Text = "Опорный план является оптимальным, так все оценки свободных клеток удовлетворяют условию ui + vj ≤ cij.";
         }
     }
 }

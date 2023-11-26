@@ -22,7 +22,7 @@
     </Window.Resources>
 
     <ScrollViewer Padding="10" Margin="0,0,0,-249">
-        <StackPanel HorizontalAlignment="Center">
+        <StackPanel x:Name="mainPanel" HorizontalAlignment="Center">
             <DockPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="0,0,0,10"
@@ -248,6 +248,54 @@
                     <TextBox x:Name="tbU5" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
                 </StackPanel>
             </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,0,0,10"
+                        x:Name="tableCost">
+                <StackPanel>
+                    <TextBox Text="Магазин \ Завод" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox Text="1" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox Text="2" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox Text="3" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox Text="4" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox Text="5" x:Name="dopRowCr" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBox Text="1" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox x:Name="tbCr11" Text="6" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr21" Text="6" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr31" Text="2" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr41" Text="4" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr51" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBox Text="2" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox x:Name="tbCr12" Text="7" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr22" Text="7" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr32" Text="5" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr42" Text="5" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr52" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBox Text="3" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox x:Name="tbCr13" Text="4" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr23" Text="9" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr33" Text="3" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr43" Text="8" Style="{StaticResource styleTextBox}"/>
+                    <TextBox x:Name="tbCr53" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel x:Name="dopColCr">
+                    <TextBox Text="4" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox x:Name="tbCr14" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox x:Name="tbCr24" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox x:Name="tbCr34" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox x:Name="tbCr44" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                    <TextBox x:Name="tbCr54" Style="{StaticResource styleTextBox}" IsEnabled="False"/>
+                </StackPanel>
+            </StackPanel>
+
+
+            <TextBlock x:Name="lbResult"/>
         </StackPanel>
         
     </ScrollViewer>
